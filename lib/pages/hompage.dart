@@ -5,6 +5,7 @@ import 'package:pure_wallet_2/static/constant.dart';
 import 'package:pure_wallet_2/static/scaled_size_custom.dart';
 
 import '../account/account_model.dart';
+import '../static/test_accounts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -60,7 +61,7 @@ class _HomePage extends State<HomePage> {
                                   GestureDetector(
                                     onTap: (){
                                       log("debug _ take from hardcode data");
-                                      _inputPhraseController.text = TESTMNEMONIC;
+                                      _inputPhraseController.text = TESTMNEMONIC[0];
                                     },
                                     child: const Text(
                                       "Import Wallet from Mnemonic",

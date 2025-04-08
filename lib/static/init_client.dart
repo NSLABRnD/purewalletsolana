@@ -21,15 +21,15 @@ class InitClient {
     bnbClient_test = Web3Client(bnbRpcUrl_test, http.Client());
   }
 
-  Web3Client? getClient(NETWORK selcNet) {
+  Web3Client? getClient(NETWORK_MODE selcNet) {
     Web3Client? selectedWebclient;
-    selectedWebclient = selcNet==NETWORK.MAIN ? ethClient: ethClient_test;
+    selectedWebclient = selcNet==NETWORK_MODE.MAIN ? ethClient: ethClient_test;
     return selectedWebclient;
   }
 
-  Web3Client? getClientBnb(NETWORK selcNet) {
+  Web3Client? getClientBnb(NETWORK_MODE selcNet) {
     Web3Client? selectedWebclient;
-    selectedWebclient = selcNet==NETWORK.MAIN ? bnbClient: bnbClient_test;
+    selectedWebclient = selcNet==NETWORK_MODE.MAIN ? bnbClient: bnbClient_test;
     return selectedWebclient;
   }
 }
