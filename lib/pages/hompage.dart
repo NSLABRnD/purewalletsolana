@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:pure_wallet_2/static/constant.dart';
 import 'package:pure_wallet_2/static/scaled_size_custom.dart';
 
 import '../account/account_model.dart';
@@ -54,14 +55,19 @@ class _HomePage extends State<HomePage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-
                               Row(
                                 children: [
-                                  const Text(
-                                    "Import Wallet from Mnemonic",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                                  GestureDetector(
+                                    onTap: (){
+                                      log("debug _ take from hardcode data");
+                                      _inputPhraseController.text = TESTMNEMONIC;
+                                    },
+                                    child: const Text(
+                                      "Import Wallet from Mnemonic",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   IconButton(
@@ -70,6 +76,8 @@ class _HomePage extends State<HomePage> {
                                       log("generate wallet");
                                       try {
                                         getAccountBasedOnMnemonic(_inputPhraseController.text,0);
+                                        setState(() {
+                                        });
                                       } catch (e, s) {
                                         log("Error : generate wallet : $e");
                                       }
@@ -103,6 +111,7 @@ class _HomePage extends State<HomePage> {
                                 },
                               ),
                               const Divider(),
+                              Text("account: ${globalVar.account_address}"),
                             ],
                           ),
                         ),

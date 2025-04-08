@@ -13,6 +13,7 @@ String bnbRpcUrl = "https://bsc-pokt.nodies.app";
 String ethRpcUrl_test = "https://1rpc.io/sepolia";
 String bnbRpcUrl_test = "https://data-seed-prebsc-1-s1.bnbchain.org:8545";
 
+String TESTMNEMONIC = "rubber cushion rural door clay need kiwi doctor trophy check jacket carpet";
 enum NETWORK {TEST, MAIN}
 
 GlobalVariable globalVar = GlobalVariable();
