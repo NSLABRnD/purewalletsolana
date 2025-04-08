@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Pure Wallet 2</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>ic_launcher</string>
+			</array>
+		</dict>
+	</dict>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>MMAI PureWallet</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Pure Wallet needs bluetooth to enable offline transactions</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Pure Wallet needs bluetooth to enable offline transactions</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Pure Wallet needs access the camera to scan barcodes/QR-Codes</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Pure Wallet needs face id to integrate your biometrics id</string>
+	<key>NSHumanReadableCopyright</key>
+	<string></string>
+	<key>NSInternetUsageDescription</key>
+	<string>Pure Wallet needs access to the internet to use the online transactions</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Pure Wallet needs access to photo lib for barcodes/QR-Codes images</string>
+	<key>NSWiFiUsageDescription</key>
+	<string>Pure Wallet needs access to the internet to use the online transactions</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+		<string>processing</string>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<!-- <key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need your location for...</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We need your location for...</string> -->
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Pure Wallet needs bluetooth to enable offline transactions</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Pure Wallet needs bluetooth to enable offline transactions</string>
+	<key>NSWiFiUsageDescription</key>
+	<string>Pure Wallet needs access to the internet to use the online transactions</string>
+	<!-- <key>NSMicrophoneUsageDescription</key>
+	<string>We need access to the microphone for...</string>
+	<key>NSMotionUsageDescription</key>
+	<string>We need access to motion sensors for...</string> -->
+	<key>NSInternetUsageDescription</key>
+	<string>Pure Wallet needs access to the internet to use the online transactions</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Pure Wallet needs access to photo lib for barcodes/QR-Codes images</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Pure Wallet needs access the camera to scan barcodes/QR-Codes</string>
+	<key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UISceneConfigurations</key>
+        <dict/>
+    </dict>
+	<key>NSBonjourServices</key>
+    <array>
+        <string>_iosoffline._tcp</string>
+    </array>
+    <key>UIRequiresPersistentWiFi</key>
+    <true/>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>iosoffline</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	</array>
+	<key>NSPrivacyAccessedAPITypes</key>
+	<array>
+		<string>NSPrivacyAccessedAPICategoryUserDefaults</string>
+		<string>NSPrivacyAccessedAPICategoryDiskSpace</string>
+		<string>NSPrivacyAccessedAPICategorySystemBootTime</string>
+		<string>NSPrivacyAccessedAPICategoryFileTimestamp</string>
+	</array>
+	<key>NSPrivacyAccessedAPICategoryFileTimestampUsageDescription</key>
+    <string>Pure Wallet needs access to file timestamps for data management and synchronization.</string>
+    <key>NSPrivacyAccessedAPICategoryDiskSpaceUsageDescription</key>
+    <string>Pure Wallet needs access to disk space information to ensure sufficient storage is available for its operations.</string>
+    <key>NSPrivacyAccessedAPICategorySystemBootTimeUsageDescription</key>
+    <string>Pure Wallet needs access to system boot time information for logging and analytics purposes.</string>
+    <key>NSPrivacyAccessedAPICategoryUserDefaultsUsageDescription</key>
+    <string>Pure Wallet needs access to user defaults to store and retrieve user preferences.</string>
+</dict>
+</plist>
