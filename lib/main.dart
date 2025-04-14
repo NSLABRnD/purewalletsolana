@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pure_wallet_2/pages/hompage.dart';
+import 'package:pure_wallet_2/pages/test_wallet_page.dart';
 import 'package:pure_wallet_2/static/init_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'static/scaled_size_custom.dart';
@@ -44,7 +45,10 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     ScaledSizeCustom.setInitMediaQuerySize(context);
     return MaterialApp(
-      home: HomePage()
+      home: HomePage(),
+      routes: {
+        '/test_wallet': (context) => const TestWalletPage(),
+      }
     );
   }
 }
