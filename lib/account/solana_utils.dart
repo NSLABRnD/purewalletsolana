@@ -4,6 +4,9 @@ import 'package:crypto/crypto.dart';
 import 'package:hex/hex.dart';
 import 'package:mnemonic/mnemonic.dart' as ibip39;
 import 'package:wallet/wallet.dart' as wallet;
+import 'package:solana/solana.dart';
+import 'dart:convert';
+import 'dart:async';
 
 /// Utility class for Solana-related cryptographic operations
 class SolanaUtils {
@@ -37,16 +40,15 @@ class SolanaUtils {
   /// 
   /// [privateKey] - The private key as a Uint8List
   /// Returns a Map containing the private key (as base58) and the public address
-  static Map<String, String> createSolanaAccountFromPrivateKey(Uint8List privateKey) {
+  static Future<Map<String, String>> createSolanaAccountFromPrivateKey(Uint8List privateKey) async {
     // For Solana, the public key is derived using Ed25519 curve
-    // The wallet package doesn't directly support Ed25519, so we're using a simplified approach
-    // In a production app, you would use a dedicated Solana library
+    // Using the proper Solana SDK implementation
     
-    // For Ed25519, the public key is derived from the private key
-    final publicKey = _derivePublicKeyEd25519(privateKey);
+    // Create a keypair from the private key
+    final keyPair = await Ed25519HDKeyPair.fromPrivateKeyBytes(privateKey: privateKey);
     
-    // In Solana, the public key is also the address
-    final address = base58EncodePublicKey(publicKey);
+    // Get the public key (address) in base58 format
+    final address = keyPair.address;
     final privateKeyBase58 = base58EncodePrivateKey(privateKey);
     
     return {
@@ -82,16 +84,58 @@ class SolanaUtils {
   }
   
   /// Derives a public key from a private key using Ed25519
-  /// This is a simplified implementation for demonstration
-  static Uint8List _derivePublicKeyEd25519(Uint8List privateKey) {
-    // In a real implementation, you would use a proper Ed25519 library
-    // This is a placeholder implementation
-    // The actual derivation is more complex
+  /// Uses the proper Solana SDK implementation
+  static Future<Uint8List> derivePublicKeyEd25519(Uint8List privateKey) async {
+    // Create a keypair from the private key using Solana SDK
+    final keyPair = await Ed25519HDKeyPair.fromPrivateKeyBytes(privateKey: privateKey);
     
-    // For demonstration, we're using a hash of the private key
-    // DO NOT use this in production - use a proper Ed25519 implementation
-    final hash = sha256.convert(privateKey).bytes;
-    return Uint8List.fromList(hash);
+    // Get the public key bytes
+    return base58.decode(keyPair.address);
+  }
+  
+  /// Gets the Solana account information (balance, etc.)
+  /// 
+  /// [address] - The Solana address to query
+  /// [useMainnet] - Whether to use mainnet (true) or devnet (false)
+  static Future<Map<String, dynamic>> getAccountInfo(String address, {bool useMainnet = false}) async {
+    try {
+      final rpcUrl = useMainnet ? 'https://api.mainnet-beta.solana.com' : 'https://api.devnet.solana.com';
+      
+      // Initialize Solana client
+      final client = SolanaClient(
+        rpcUrl: Uri.parse(rpcUrl),
+        websocketUrl: Uri.parse(rpcUrl.replaceFirst('https', 'wss')),
+      );
+      
+      // Get account info
+      final publicKey = Ed25519HDPublicKey.fromBase58(address);
+      final account = await client.rpcClient.getAccountInfo(publicKey.toBase58());
+      
+      // Get balance
+      final balanceResult = await client.rpcClient.getBalance(publicKey.toBase58());
+      
+      // Properly extract the balance value from BalanceResult
+      final balanceInLamports = balanceResult.value;
+      final balanceInSol = balanceInLamports / 1000000000; // Convert lamports to SOL
+      
+      // Properly extract account data and executable flag from AccountResult
+      final accountData = account?.value?.data;
+      final isExecutable = account?.value?.executable ?? false;
+      
+      return {
+        'success': true,
+        'address': address,
+        'balance': balanceInSol,
+        'account': accountData,
+        'executable': isExecutable,
+      };
+    } catch (e) {
+      return {
+        'success': false,
+        'error': e.toString(),
+        'message': 'Failed to get account info',
+      };
+    }
   }
   
   /// Converts a BigInt to Uint8List

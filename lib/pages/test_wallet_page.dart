@@ -7,6 +7,7 @@ import 'package:pure_wallet_2/static/scaled_size_custom.dart';
 
 import '../account/account_model.dart';
 import '../static/test_accounts.dart';
+import 'send_transaction_page.dart';
 
 class TestWalletPage extends StatefulWidget {
   const TestWalletPage({super.key});
@@ -318,6 +319,29 @@ class _TestWalletPageState extends State<TestWalletPage> {
                               },
                             ),
                           ],
+                        ),
+                        SizedBox(height: 16.rh),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SendTransactionPage(
+                                    senderAddress: _accountInfo['address'] ?? '',
+                                    privateKey: _accountInfo['privateKey'] ?? '',
+                                    network: _selectedNetwork,
+                                  ),
+                                ),
+                              );
+                            },
+                            icon: const Icon(Icons.send),
+                            label: const Text('Send Coins'),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(vertical: 12.rh),
+                            ),
+                          ),
                         ),
                       ],
                     ),

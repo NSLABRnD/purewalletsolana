@@ -26,7 +26,7 @@ getAccountBasedOnMnemonic(String entropyString, int depth, {BLOCKCHAIN_NETWORK n
     case BLOCKCHAIN_NETWORK.SOL:
       Uint8List privateKey = SolanaUtils.getSolPrivateKeyFromMnemonic(
           ibip39.mnemonicToEntropy(entropyString), depth);
-      final accountInfo = SolanaUtils.createSolanaAccountFromPrivateKey(privateKey);
+      final accountInfo = await SolanaUtils.createSolanaAccountFromPrivateKey(privateKey);
       log('SOL storeNewAccountFromMnemonic: ${accountInfo['address']}, ${accountInfo['privateKey']}');
       globalVar.account_address = accountInfo['address'];
       return {
@@ -56,7 +56,6 @@ getAccountFromPrivateKey(String privateKey, {BLOCKCHAIN_NETWORK network = BLOCKC
         ACCOUNT_ASSET.ADDRESS: address
       };
     case BLOCKCHAIN_NETWORK.SOL:
-      // For Solana, private key can be in base58 or hex format
       Uint8List solPrivateKey;
       if (privateKey.startsWith('0x')) {
         // Handle hex format
@@ -66,7 +65,7 @@ getAccountFromPrivateKey(String privateKey, {BLOCKCHAIN_NETWORK network = BLOCKC
         solPrivateKey = SolanaUtils.base58DecodePrivateKey(privateKey);
       }
       
-      final accountInfo = SolanaUtils.createSolanaAccountFromPrivateKey(solPrivateKey);
+      final accountInfo = await SolanaUtils.createSolanaAccountFromPrivateKey(solPrivateKey);
       log('SOL account from private key: ${accountInfo['address']}');
       globalVar.account_address = accountInfo['address'];
       return {
