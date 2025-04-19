@@ -8,6 +8,7 @@ import 'package:pure_wallet_2/static/scaled_size_custom.dart';
 import '../account/account_model.dart';
 import '../static/test_accounts.dart';
 import 'send_transaction_page.dart';
+import 'send_token_page.dart';
 
 class TestWalletPage extends StatefulWidget {
   const TestWalletPage({super.key});
@@ -337,7 +338,32 @@ class _TestWalletPageState extends State<TestWalletPage> {
                               );
                             },
                             icon: const Icon(Icons.send),
-                            label: const Text('Send Coins'),
+                            label: const Text('Send SOL'),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(vertical: 12.rh),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 8.rh),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SendTokenPage(
+                                    senderAddress: _accountInfo['address'] ?? '',
+                                    privateKey: _accountInfo['privateKey'] ?? '',
+                                    network: _selectedNetwork,
+                                    tokenMintAddress: '4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU', // Example token mint (devnet USDC)
+                                    tokenSymbol: 'USDC',
+                                  ),
+                                ),
+                              );
+                            },
+                            icon: const Icon(Icons.token),
+                            label: const Text('Send SPL Token'),
                             style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.symmetric(vertical: 12.rh),
                             ),
